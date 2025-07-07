@@ -1,6 +1,5 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { LinkedIn, Mail } from "lucide-react";
+import { Linkedin, Mail } from "lucide-react";
 
 const Leadership = () => {
   const leaders = [
@@ -11,14 +10,14 @@ const Leadership = () => {
       image: "/placeholder.svg"
     },
     {
-      name: "Ravi Patel",
+      name: "Ravi Patel", 
       role: "Co-Founder & CTO",
       bio: "Technology veteran with deep expertise in fintech and marketplace platforms. Former senior engineer at leading tech companies. Specializes in building scalable architectures and implementing cutting-edge solutions for B2B commerce and financial services.",
       image: "/placeholder.svg"
     },
     {
       name: "Keyur Patel",
-      role: "Co-Founder & CFO",
+      role: "Co-Founder & CFO", 
       bio: "Financial strategist with extensive experience in corporate finance and venture capital. Previously worked with top-tier investment banks and private equity firms. Expert in financial modeling, risk management, and fundraising for high-growth companies.",
       image: "/placeholder.svg"
     },
@@ -71,7 +70,7 @@ const Leadership = () => {
                   </p>
                   <div className="flex items-center justify-center space-x-4">
                     <button className="flex items-center space-x-2 text-wdv-blue hover:text-wdv-navy transition-colors">
-                      <LinkedIn className="h-5 w-5" />
+                      <Linkedin className="h-5 w-5" />
                       <span className="text-sm">LinkedIn</span>
                     </button>
                     <button className="flex items-center space-x-2 text-wdv-blue hover:text-wdv-navy transition-colors">
