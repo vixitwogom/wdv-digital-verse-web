@@ -1,5 +1,8 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Linkedin, Mail } from "lucide-react";
+
+import LeaderCard from "@/components/leadership/LeaderCard";
+import ValueCard from "@/components/leadership/ValueCard";
+import PhilosophySection from "@/components/leadership/PhilosophySection";
+import JoinTeamSection from "@/components/leadership/JoinTeamSection";
 
 const Leadership = () => {
   const leaders = [
@@ -29,6 +32,28 @@ const Leadership = () => {
     }
   ];
 
+  const values = [
+    {
+      letter: "V",
+      title: "Visionary Thinking",
+      description: "We envision the future of retail and build solutions that transform entire ecosystems, not just individual businesses.",
+      bgColor: "bg-wdv-navy"
+    },
+    {
+      letter: "C",
+      title: "Collaborative Spirit",
+      description: "We believe in building together - with our team, partners, and the entire retail community to create shared success.",
+      bgColor: "bg-wdv-blue"
+    },
+    {
+      letter: "E",
+      title: "Excellence in Execution",
+      description: "We maintain the highest standards in everything we do, from technology development to customer service and operational delivery.",
+      bgColor: "bg-wdv-gold",
+      textColor: "text-wdv-navy"
+    }
+  ];
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -54,32 +79,7 @@ const Leadership = () => {
         <div className="container-wdv">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {leaders.map((leader, index) => (
-              <Card key={index} className="hover:shadow-xl transition-shadow animate-slide-up border-0 shadow-lg" style={{ animationDelay: `${index * 0.1}s` }}>
-                <CardHeader className="text-center pb-6">
-                  <div className="w-32 h-32 bg-gradient-to-br from-wdv-navy to-wdv-blue rounded-full mx-auto mb-6 flex items-center justify-center text-white text-4xl font-bold">
-                    {leader.name.split(' ').map(n => n[0]).join('')}
-                  </div>
-                  <CardTitle className="text-2xl text-wdv-navy mb-2">{leader.name}</CardTitle>
-                  <div className="inline-flex items-center bg-wdv-gold text-wdv-navy px-4 py-2 rounded-full text-sm font-semibold">
-                    {leader.role}
-                  </div>
-                </CardHeader>
-                <CardContent className="text-center">
-                  <p className="text-gray-600 leading-relaxed mb-6">
-                    {leader.bio}
-                  </p>
-                  <div className="flex items-center justify-center space-x-4">
-                    <button className="flex items-center space-x-2 text-wdv-blue hover:text-wdv-navy transition-colors">
-                      <Linkedin className="h-5 w-5" />
-                      <span className="text-sm">LinkedIn</span>
-                    </button>
-                    <button className="flex items-center space-x-2 text-wdv-blue hover:text-wdv-navy transition-colors">
-                      <Mail className="h-5 w-5" />
-                      <span className="text-sm">Contact</span>
-                    </button>
-                  </div>
-                </CardContent>
-              </Card>
+              <LeaderCard key={index} leader={leader} index={index} />
             ))}
           </div>
         </div>
@@ -98,121 +98,22 @@ const Leadership = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="text-center border-0 bg-white shadow-lg hover:shadow-xl transition-shadow">
-              <CardHeader>
-                <div className="w-16 h-16 bg-wdv-navy rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <span className="text-white text-2xl font-bold">V</span>
-                </div>
-                <CardTitle className="text-xl text-wdv-navy">Visionary Thinking</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">
-                  We envision the future of retail and build solutions that transform entire ecosystems, 
-                  not just individual businesses.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="text-center border-0 bg-white shadow-lg hover:shadow-xl transition-shadow">
-              <CardHeader>
-                <div className="w-16 h-16 bg-wdv-blue rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <span className="text-white text-2xl font-bold">C</span>
-                </div>
-                <CardTitle className="text-xl text-wdv-navy">Collaborative Spirit</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">
-                  We believe in building together - with our team, partners, and the entire retail 
-                  community to create shared success.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="text-center border-0 bg-white shadow-lg hover:shadow-xl transition-shadow">
-              <CardHeader>
-                <div className="w-16 h-16 bg-wdv-gold rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <span className="text-wdv-navy text-2xl font-bold">E</span>
-                </div>
-                <CardTitle className="text-xl text-wdv-navy">Excellence in Execution</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">
-                  We maintain the highest standards in everything we do, from technology 
-                  development to customer service and operational delivery.
-                </p>
-              </CardContent>
-            </Card>
+            {values.map((value, index) => (
+              <ValueCard 
+                key={index}
+                letter={value.letter}
+                title={value.title}
+                description={value.description}
+                bgColor={value.bgColor}
+                textColor={value.textColor}
+              />
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Leadership Philosophy */}
-      <section className="section-padding bg-wdv-navy text-white">
-        <div className="container-wdv">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-8">
-              Our Leadership Philosophy
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-left">
-              <div>
-                <h3 className="text-2xl font-semibold mb-4 text-wdv-gold">People-First Approach</h3>
-                <p className="text-blue-100 leading-relaxed">
-                  We believe that great companies are built by great people. Our leadership team 
-                  is committed to creating an environment where every team member can thrive, 
-                  innovate, and contribute to our shared mission of transforming India's retail ecosystem.
-                </p>
-              </div>
-              <div>
-                <h3 className="text-2xl font-semibold mb-4 text-wdv-gold">Long-term Vision</h3>
-                <p className="text-blue-100 leading-relaxed">
-                  While we celebrate short-term wins, our decisions are guided by long-term thinking. 
-                  We're building sustainable solutions that will serve India's retail community 
-                  for decades to come, not just the next quarter.
-                </p>
-              </div>
-              <div>
-                <h3 className="text-2xl font-semibold mb-4 text-wdv-gold">Continuous Learning</h3>
-                <p className="text-blue-100 leading-relaxed">
-                  The retail landscape is constantly evolving, and so are we. Our leadership team 
-                  maintains a culture of continuous learning, staying ahead of trends and 
-                  adapting our strategies to serve our community better.
-                </p>
-              </div>
-              <div>
-                <h3 className="text-2xl font-semibold mb-4 text-wdv-gold">Ethical Leadership</h3>
-                <p className="text-blue-100 leading-relaxed">
-                  We lead with integrity and transparency in all our dealings. Our success is 
-                  measured not just by financial metrics, but by the positive impact we create 
-                  for retailers, sellers, and the broader ecosystem.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Join Our Team CTA */}
-      <section className="section-padding bg-gray-50">
-        <div className="container-wdv">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl lg:text-4xl font-bold text-wdv-navy mb-6">
-              Join Our Mission
-            </h2>
-            <p className="text-xl text-gray-600 mb-8">
-              We're always looking for exceptional talent to join our team and help build 
-              the future of India's retail ecosystem.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-wdv-gold text-wdv-navy px-8 py-3 rounded-lg font-semibold hover:bg-yellow-400 transition-colors">
-                View Open Positions
-              </button>
-              <button className="border-2 border-wdv-navy text-wdv-navy px-8 py-3 rounded-lg font-semibold hover:bg-wdv-navy hover:text-white transition-colors">
-                Send Us Your Resume
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PhilosophySection />
+      <JoinTeamSection />
     </div>
   );
 };
