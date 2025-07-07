@@ -1,96 +1,72 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* World Digital Ventures Design System - Extracted from deck colors */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 250 250 250;
+    --foreground: 15 23 42;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 255 255 255;
+    --card-foreground: 15 23 42;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 255 255 255;
+    --popover-foreground: 15 23 42;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Deep Navy - Primary brand color */
+    --primary: 210 100% 12%;
+    --primary-foreground: 248 250 252;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Electric Blue - Accent */
+    --secondary: 217 91% 60%;
+    --secondary-foreground: 248 250 252;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Sunrise Gold - Highlight */
+    --accent: 45 93% 58%;
+    --accent-foreground: 15 23 42;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --muted: 241 245 249;
+    --muted-foreground: 100 116 139;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 226 229 235;
+    --input: 226 229 235;
+    --ring: 217 91% 60%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Custom WDV Colors */
+    --wdv-navy: 210 100% 12%;
+    --wdv-blue: 217 91% 60%;
+    --wdv-gold: 45 93% 58%;
+    --wdv-light: 250 250 250;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
+    --background: 15 23 42;
+    --foreground: 248 250 252;
+    --card: 30 41 59;
+    --card-foreground: 248 250 252;
+    --popover: 30 41 59;
+    --popover-foreground: 248 250 252;
+    --primary: 217 91% 60%;
+    --primary-foreground: 15 23 42;
+    --secondary: 210 100% 12%;
+    --secondary-foreground: 248 250 252;
+    --muted: 51 65 85;
+    --muted-foreground: 148 163 184;
+    --accent: 45 93% 58%;
+    --accent-foreground: 15 23 42;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --destructive-foreground: 248 250 252;
+    --border: 51 65 85;
+    --input: 51 65 85;
+    --ring: 217 91% 60%;
   }
 }
 
@@ -100,6 +76,114 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-inter;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+  }
+
+  h1 {
+    @apply text-4xl lg:text-6xl leading-tight;
+  }
+
+  h2 {
+    @apply text-3xl lg:text-4xl leading-tight;
+  }
+
+  h3 {
+    @apply text-2xl lg:text-3xl leading-tight;
+  }
+}
+
+/* Custom utility classes */
+@layer utilities {
+  .text-wdv-navy {
+    color: hsl(var(--wdv-navy));
+  }
+  
+  .text-wdv-blue {
+    color: hsl(var(--wdv-blue));
+  }
+  
+  .text-wdv-gold {
+    color: hsl(var(--wdv-gold));
+  }
+  
+  .bg-wdv-navy {
+    background-color: hsl(var(--wdv-navy));
+  }
+  
+  .bg-wdv-blue {
+    background-color: hsl(var(--wdv-blue));
+  }
+  
+  .bg-wdv-gold {
+    background-color: hsl(var(--wdv-gold));
+  }
+
+  .gradient-hero {
+    background: linear-gradient(135deg, hsl(var(--wdv-navy)) 0%, hsl(var(--wdv-blue)) 100%);
+  }
+
+  .container-wdv {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-16 lg:py-24;
+  }
+
+  .section-padding-sm {
+    @apply py-8 lg:py-12;
+  }
+}
+
+/* Animation utilities */
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.5s ease-out;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
