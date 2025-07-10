@@ -10,10 +10,10 @@ const Footer = () => {
           {/* Company Info */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-wdv-blue rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">WDV</span>
-              </div>
-              <span className="text-xl font-bold">World Digital Ventures</span>
+              {/* <div className="w-8 h-8 bg-white p-5 rounded-lg flex items-center justify-center">
+                <span className="text-[#012345] font-bold text-sm">WDV</span>
+              </div> */}
+              <span className=""><img src="./images/wdv_white.svg" className="h-5 " alt="" /></span>
             </div>
             <p className="text-gray-300 mb-4 max-w-md">
               Empowering India's retail ecosystem through Money, Margin and Discovery. 
@@ -26,11 +26,11 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-2 text-sm text-gray-300">
                 <Mail className="h-4 w-4" />
-                <span>info@worlddigitalventures.com</span>
+                <span>support@wogom.com</span>
               </div>
               <div className="flex items-center space-x-2 text-sm text-gray-300">
                 <Phone className="h-4 w-4" />
-                <span>+91 98765 43210</span>
+                <span>+91-97960 02002</span>
               </div>
             </div>
           </div>
@@ -40,7 +40,7 @@ const Footer = () => {
             <h4 className="font-semibold mb-4">Our Ecosystem</h4>
             <ul className="space-y-2 text-sm text-gray-300">
               <li><Link to="/wogom" className="hover:text-wdv-blue transition-colors">WOGOM Marketplace</Link></li>
-              <li><Link to="/wofi" className="hover:text-wdv-blue transition-colors">WoFi Lending</Link></li>
+              <li><Link to="/wofi" className="hover:text-wdv-blue transition-colors">Wofi Lending</Link></li>
               <li><Link to="/brandverse" className="hover:text-wdv-blue transition-colors">Brandverse</Link></li>
             </ul>
           </div>

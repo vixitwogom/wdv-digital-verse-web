@@ -1,33 +1,166 @@
 
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, TrendingUp, DollarSign, Users, Target, CheckCircle, Download } from "lucide-react";
+import { ArrowRight, TrendingUp, DollarSign, Users, Target, CheckCircle, Download, Send } from "lucide-react";
+import { motion } from 'framer-motion';
+import LocationBarChart from "@/components/ui/LocationBarChart";
+import GMVBarChart from "@/components/ui/GMVBarChart";
+import CustomModal from "@/components/ui/CustomModal";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 
 const Investors = () => {
+  const FIRST_LEVEL_CHILD_BOTTOM_Y = 300;
+  const INTERMEDIATE_Y_LEVEL_2 = 340;
+  const childTargetX = {
+    child1: "20%",
+    child2: "40%",
+    child3: "60%",
+    child4: "80%",
+  };
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    closeModal();
+  };
+
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href = "/assets/WDV_Pitch Deck_02-07.pdf"; 
+    link.download = "WDV_Pitch Deck_02-07.pdf";     
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="gradient-hero text-white section-padding">
-        <div className="container-wdv">
+      <section className="bg-[#012345] hite section-padding">
+        <div className="px-4 py-16 md:py-20 2xl:py-[160px]">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-4xl lg:text-6xl font-bold mb-6 animate-fade-in">
+            <h1 className="text-4xl lg:text-6xl font-bold mb-6 text-white animate-fade-in">
               Investment Opportunity
             </h1>
-            <p className="text-xl lg:text-2xl text-blue-100 mb-8 animate-slide-up">
+            <p className="text-xl lg:text-2xl text-white mb-8 animate-slide-up">
               Partner with us to build India's most collaborative retail ecosystem
             </p>
-            <p className="text-lg text-blue-200 mb-8 animate-slide-up" style={{ animationDelay: '0.2s' }}>
-              A unique opportunity to invest in the convergence of B2B commerce, fintech, 
+            <p className="text-lg text-white mb-8 animate-slide-up" style={{ animationDelay: '0.2s' }}>
+              A unique opportunity to invest in the convergence of B2B commerce, fintech,
               and brand acceleration in India's $1.3 trillion retail market
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up" style={{ animationDelay: '0.3s' }}>
-              <Button size="lg" className="bg-wdv-gold text-wdv-navy hover:bg-yellow-400 font-semibold">
+              <Button size="lg" className="bg-white text-[#012345] hover:bg-white font-semibold"
+              onClick={handleDownload}>
                 <Download className="mr-2 h-5 w-5" />
                 Download Pitch Deck
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-wdv-navy">
+              <Button size="lg" variant="outline" className="border-whit hover:bg-white bg-white text-[#012345] border-none hover:text-wdv-navy" onClick={openModal}>
                 Schedule Meeting
               </Button>
+              <CustomModal isOpen={isModalOpen} onClose={closeModal} title="Schedule Meeting">
+                <form className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label htmlFor="firstName" className="block text-sm font-semibold text-left text-[#012345] mb-2">
+                        First Name *
+                      </label>
+                      <Input
+                        id="firstName"
+                        type="text"
+                        placeholder="Enter your first name"
+                        className="w-full border-black"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="lastName" className="block text-left text-sm font-semibold text-[#012345] mb-2">
+                        Last Name *
+                      </label>
+                      <Input
+                        id="lastName"
+                        type="text"
+                        placeholder="Enter your last name"
+                        className="w-full border-black"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="email" className="block text-left text-sm font-semibold text-[#012345] mb-2">
+                      Email Address *
+                    </label>
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="Enter your email address"
+                      className="w-full border-black"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="phone" className="block text-left text-sm font-semibold text-[#012345] mb-2">
+                      Phone Number
+                    </label>
+                    <Input
+                      id="phone"
+                      type="tel"
+                      placeholder="+91 98765 43210"
+                      className="w-full border-black"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="company" className="block text-left text-sm font-semibold text-[#012345] mb-2">
+                      Company Name
+                    </label>
+                    <Input
+                      id="company"
+                      type="text"
+                      placeholder="Enter company name"
+                      className="w-full border-black"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="interest" className="block text-left text-sm font-semibold text-[#012345] mb-2">
+                      Area of Interest *
+                    </label>
+                    <select
+                      id="interest"
+                      className="w-full px-3 py-2 border border-black text-[#012345] rounded-lg focus:outline-none focus:ring-2 focus:ring-wdv-blue focus:border-transparent"
+                    >
+                      <option value="">Select your interest</option>
+                      <option value="retailer">Join as Retailer</option>
+                      <option value="seller">Become a Seller</option>
+                      <option value="brand">Brand Partnership</option>
+                      <option value="investor">Investment Opportunity</option>
+                      <option value="credit">Credit Solutions</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label htmlFor="message" className="block text-left text-sm font-semibold text-[#012345] mb-2">
+                      Message *
+                    </label>
+                    <Textarea
+                      id="message"
+                      placeholder="Tell us about your requirements, questions, or how we can help you..."
+                      className="w-full h-32 border-black"
+                    />
+                  </div>
+
+                  <Button type="submit" size="lg" className="w-full bg-[#1068b2] text-white hover:bg-[#1068b2] font-semibold">
+                    <Send className="mr-2 h-5 w-5" />
+                    Send Message
+                  </Button>
+                </form>
+              </CustomModal>
             </div>
           </div>
         </div>
@@ -37,75 +170,75 @@ const Investors = () => {
       <section className="section-padding">
         <div className="container-wdv">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-wdv-navy mb-6">
+            <h2 className="text-3xl lg:text-4xl font-bold text-[#012345] mb-6">
               Investment Highlights
             </h2>
-            <p className="text-xl text-gray-600">
+            {/* <p className="text-xl text-gray-600">
               Key reasons why WDV represents a compelling investment opportunity
-            </p>
+            </p> */}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <Card className="text-center hover:shadow-lg transition-shadow animate-slide-up">
+            <Card className="text-center hover:shadow-lg border-none bg-[#1068b2] transform hover:scale-105 transition-all duration-300">
               <CardHeader>
-                <div className="w-16 h-16 bg-wdv-blue rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <TrendingUp className="h-8 w-8 text-white" />
+                <div className="w-16 h-16 bg-[#ffcb05] rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <TrendingUp className="h-8 w-8 text-black" />
                 </div>
-                <CardTitle className="text-lg text-wdv-navy">Proven Traction</CardTitle>
+                <CardTitle className="text-lg text-white">Proven Traction</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-2 text-sm text-gray-600">
-                  <div>6,000+ Active Retailers</div>
-                  <div>450+ Verified Sellers</div>
-                  <div>₹271 Cr Disbursed</div>
+                <div className="space-y-2 text-sm text-white text-left">
+                  <div className="flex"><CheckCircle className="h-4 w-4 text-white mr-2 mt-0.5" />6,000+ Active Retailers</div>
+                  <div className="flex"><CheckCircle className="h-4 w-4 text-white mr-2 mt-0.5" />450+ Verified Sellers</div>
+                  <div className="flex"><CheckCircle className="h-4 w-4 text-white mr-2 mt-0.5" />₹271 Cr Disbursed</div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="text-center hover:shadow-lg transition-shadow animate-slide-up" style={{ animationDelay: '0.1s' }}>
+            <Card className="text-center hover:shadow-lg border-none bg-[#1068b2] transform hover:scale-105 transition-all duration-300" style={{ animationDelay: '0.1s' }}>
               <CardHeader>
-                <div className="w-16 h-16 bg-wdv-gold rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <DollarSign className="h-8 w-8 text-wdv-navy" />
+                <div className="w-16 h-16 bg-[#ffcb05] rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <DollarSign className="h-8 w-8 text-black" />
                 </div>
-                <CardTitle className="text-lg text-wdv-navy">Strong Unit Economics</CardTitle>
+                <CardTitle className="text-lg text-white">Strong Unit Economics</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-2 text-sm text-gray-600">
-                  <div>0.48% NPA Rate</div>
-                  <div>Path to Profitability</div>
-                  <div>Scalable Model</div>
+                <div className="space-y-2 text-sm text-white">
+                  <div className="flex"><CheckCircle className="h-4 w-4 text-white mr-2 mt-0.5" />&lt; 0.50% NPA Rate</div>
+                  <div className="flex"><CheckCircle className="h-4 w-4 text-white mr-2 mt-0.5" />Path to Profitability</div>
+                  <div className="flex"><CheckCircle className="h-4 w-4 text-white mr-2 mt-0.5" />Scalable Model</div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="text-center hover:shadow-lg transition-shadow animate-slide-up" style={{ animationDelay: '0.2s' }}>
+            <Card className="text-center hover:shadow-lg border-none bg-[#1068b2] transform hover:scale-105 transition-all duration-300" style={{ animationDelay: '0.2s' }}>
               <CardHeader>
-                <div className="w-16 h-16 bg-wdv-navy rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <Users className="h-8 w-8 text-white" />
+                <div className="w-16 h-16 bg-[#ffcb05] rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <Users className="h-8 w-8 text-black" />
                 </div>
-                <CardTitle className="text-lg text-wdv-navy">Experienced Team</CardTitle>
+                <CardTitle className="text-lg text-white">Experienced Team</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-2 text-sm text-gray-600">
-                  <div>15+ Years Experience</div>
-                  <div>Proven Track Record</div>
-                  <div>Deep Domain Expertise</div>
+                <div className="space-y-2 text-sm text-white">
+                  <div className="flex"><CheckCircle className="h-4 w-4 text-white mr-2 mt-0.5" />15+ Years Experience</div>
+                  <div className="flex"><CheckCircle className="h-4 w-4 text-white mr-2 mt-0.5" />Proven Track Record</div>
+                  <div className="flex"><CheckCircle className="h-4 w-4 text-white mr-2 mt-0.5" />Deep Domain Expertise</div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="text-center hover:shadow-lg transition-shadow animate-slide-up" style={{ animationDelay: '0.3s' }}>
+            <Card className="text-center hover:shadow-lg border-none transform hover:scale-105 transition-all duration-300 bg-[#1068b2]" style={{ animationDelay: '0.3s' }}>
               <CardHeader>
-                <div className="w-16 h-16 bg-green-600 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <Target className="h-8 w-8 text-white" />
+                <div className="w-16 h-16 bg-[#ffcb05] rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <Target className="h-8 w-8 text-black" />
                 </div>
-                <CardTitle className="text-lg text-wdv-navy">Market Opportunity</CardTitle>
+                <CardTitle className="text-lg text-white">Market Opportunity</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-2 text-sm text-gray-600">
-                  <div>$1.3T Retail Market</div>
-                  <div>Growing Digitization</div>
-                  <div>Underserved MSMEs</div>
+                <div className="space-y-2 text-sm text-white">
+                 <div className="flex"><CheckCircle className="h-4 w-4 text-white mr-2 mt-0.5" />$1.3T Retail Market</div>
+                 <div className="flex"><CheckCircle className="h-4 w-4 text-white mr-2 mt-0.5" />Growing Digitization</div>
+                 <div className="flex"><CheckCircle className="h-4 w-4 text-white mr-2 mt-0.5" />Underserved MSMEs</div>
                 </div>
               </CardContent>
             </Card>
@@ -114,30 +247,32 @@ const Investors = () => {
       </section>
 
       {/* GMV Growth Chart */}
-      <section className="section-padding bg-gray-50">
+      {/* <section className="section-padding bg-gray-100">
         <div className="container-wdv">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-wdv-navy mb-6">
+            <h2 className="text-3xl lg:text-4xl font-bold text-[#012345] mb-6">
               GMV Growth Trajectory
             </h2>
-            <p className="text-xl text-gray-600">
-              Consistent growth demonstrating strong market validation and execution capability
-            </p>
-          </div>
+            <div className="bg-white rounded-2xl shadow-lg p-8 flex mt-10 flex-col md:flex-row justify-center items-stretch gap-6">
+              <GMVBarChart />
+              <LocationBarChart />
+            </div>
+           
+          </div> */}
 
-          <div className="bg-white rounded-2xl shadow-lg p-8 max-w-4xl mx-auto">
+      {/* <div className="bg-white rounded-2xl shadow-lg p-8 max-w-4xl mx-auto">
             <div className="space-y-8">
               <div className="flex items-center justify-between">
                 <span className="text-lg font-medium text-gray-700 w-20">FY22</span>
                 <div className="flex-1 mx-4">
                   <div className="bg-gray-200 rounded-full h-12">
-                    <div className="bg-wdv-blue rounded-full h-12 flex items-center justify-end pr-6" style={{ width: '10%' }}>
-                      <span className="text-white font-bold">₹50 Cr</span>
+                    <div className="bg-wdv-blue rounded-full h-12 flex items-center justify-end pr-1" style={{ width: '10%' }}>
+                      <span className="text-white font-bold text-center">₹50 Cr</span>
                     </div>
                   </div>
                 </div>
                 <div className="text-right w-32">
-                  <div className="text-sm text-green-600 font-medium">+150% YoY</div>
+                  <div className="text-sm text-[#012345] font-medium">+150% YoY</div>
                 </div>
               </div>
 
@@ -151,7 +286,7 @@ const Investors = () => {
                   </div>
                 </div>
                 <div className="text-right w-32">
-                  <div className="text-sm text-green-600 font-medium">+124% YoY</div>
+                  <div className="text-sm text-[#012345] font-medium">+124% YoY</div>
                 </div>
               </div>
 
@@ -165,7 +300,7 @@ const Investors = () => {
                   </div>
                 </div>
                 <div className="text-right w-32">
-                  <div className="text-sm text-green-600 font-medium">+124% YoY</div>
+                  <div className="text-sm text-[#012345] font-medium">+124% YoY</div>
                 </div>
               </div>
 
@@ -179,19 +314,19 @@ const Investors = () => {
                   </div>
                 </div>
                 <div className="text-right w-32">
-                  <div className="text-sm text-green-600 font-medium">+79% YoY</div>
+                  <div className="text-sm text-[#012345] font-medium">+79% YoY</div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
+          </div> */}
+      {/* </div>
+      </section> */}
 
       {/* Breakeven Table */}
-      <section className="section-padding">
+      {/* <section className="section-padding">
         <div className="container-wdv">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-wdv-navy mb-6">
+            <h2 className="text-3xl lg:text-4xl font-bold text-[#012345] mb-6">
               Path to Profitability
             </h2>
             <p className="text-xl text-gray-600">
@@ -200,7 +335,7 @@ const Investors = () => {
           </div>
 
           <div className="bg-white rounded-2xl shadow-lg overflow-hidden max-w-5xl mx-auto">
-            <div className="bg-wdv-navy text-white p-6">
+            <div className="bg-[#1068b2] text-white p-6">
               <h3 className="text-2xl font-bold text-center">Financial Projections (₹ Crores)</h3>
             </div>
             <div className="overflow-x-auto">
@@ -251,31 +386,254 @@ const Investors = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Group Structure */}
-      <section className="section-padding bg-gray-50">
+      <section className="section-padding bg-gray-100">
         <div className="container-wdv">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-wdv-navy mb-6">
+            <h2 className="text-3xl lg:text-4xl font-bold text-[#012345] mb-6">
               Group Structure
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-[#012345]">
               Integrated ecosystem with clear business divisions and strategic synergies
             </p>
           </div>
+          <div className="relative mx-auto max-w-main" style={{ height: "650px" }}>
+            <svg className="absolute inset-0 w-full h-full pointer-events-none">
+              {/* WDV to World Brandverse */}
+              <line
+                x1="46%"
+                y1="161px"
+                x2="46%"
+                y2="136px"
+                stroke="#003366"
+                stroke-width="1"
+              ></line>
+              <line
+                x1="46%"
+                y1="160px"
+                x2="20%"
+                y2="160px"
+                stroke="#003366"
+                stroke-width="1"
+              ></line>
+              <line
+                x1="20%"
+                y1="160px"
+                x2="20%"
+                y2="240px"
+                stroke="#003366"
+                stroke-width="1"
+              ></line>
+              <circle cx="46%" cy="140px" r="4" fill="#1068B2"></circle>
 
-          <div className="max-w-4xl mx-auto">
+              {/* WDV to WOGOM */}
+              <line
+                x1="49%"
+                y1="180px"
+                x2="49%"
+                y2="137px"
+                stroke="#003366"
+                stroke-width="1"
+              ></line>
+              <line
+                x1="49%"
+                y1="180px"
+                x2="40%"
+                y2="180px"
+                stroke="#003366"
+                stroke-width="1"
+              ></line>
+              <line
+                x1="40%"
+                y1="179px"
+                x2="40%"
+                y2="240px"
+                stroke="#003366"
+                stroke-width="1"
+              ></line>
+              <circle cx="49%" cy="140px" r="4" fill="#1068B2"></circle>
+
+              {/* WDV to WOFI */}
+              <line
+                x1="51%"
+                y1="136px"
+                x2="51%"
+                y2="181px"
+                stroke="#003366"
+                stroke-width="1"
+              ></line>
+              <line
+                x1="51%"
+                y1="180px"
+                x2="60%"
+                y2="180px"
+                stroke="#003366"
+                stroke-width="1"
+              ></line>
+              <line
+                x1="60%"
+                y1="179px"
+                x2="60%"
+                y2="240px"
+                stroke="#003366"
+                stroke-width="1"
+              ></line>
+              <circle cx="51%" cy="140px" r="4" fill="#1068B2"></circle>
+
+              {/* WDV to WOFI Global */}
+              <line
+                x1="54%"
+                y1="143px"
+                x2="54%"
+                y2="156px"
+                stroke="#003366"
+                stroke-width="1"
+              ></line>
+              <line
+                x1="54%"
+                y1="156px"
+                x2="80%"
+                y2="156px"
+                stroke="#003366"
+                stroke-width="1"
+              ></line>
+              <line
+                x1="80%"
+                x2="80%"
+                y2="254px"
+                stroke="#003366"
+                stroke-width="1"
+                y1="155px"
+              ></line>
+              <circle cx="54%" cy="142px" r="4" fill="#1068B2"></circle>
+
+              {/* Dashed Sub-Connections */}
+              <line
+                x1={childTargetX.child1}
+                y1={`${FIRST_LEVEL_CHILD_BOTTOM_Y}px`}
+                x2={childTargetX.child1}
+                y2={`${INTERMEDIATE_Y_LEVEL_2}px`}
+                stroke="#003366"
+                strokeWidth="2"
+                strokeDasharray="6,4"
+              />
+              <line
+                x1="20%"
+                y1="405px"
+                x2="20%"
+                y2="460px"
+                stroke="#003366"
+                stroke-width="1"
+                stroke-dasharray="6,4"
+              ></line>
+              <circle cx="20%" cy="400px" r="4" fill="#1068B2"></circle>
+
+              <line
+                x1={childTargetX.child2}
+                y1={`${FIRST_LEVEL_CHILD_BOTTOM_Y}px`}
+                x2={childTargetX.child2}
+                y2={`${INTERMEDIATE_Y_LEVEL_2}px`}
+                stroke="#003366"
+                strokeWidth="2"
+                strokeDasharray="6,4"
+              />
+              <line
+                x1="40%"
+                y1="405px"
+                x2="40%"
+                y2="500px"
+                stroke="#003366"
+                stroke-width="1"
+                stroke-dasharray="6,4"
+              ></line>
+              <circle cx="40%" cy="401px" r="4" fill="#1068B2"></circle>
+            </svg>
+
+            {/* WDV Node */}
+            <div className="absolute top-[40px] left-1/2 transform -translate-x-1/2">
+              <div className="border-2 border-[#1068b2] rounded-xl p-4 w-56 text-center shadow bg-white text-[#012345]">
+                <h3 className="font-bold text-lg">WDV</h3>
+                <p className="text-sm">World Digital Ventures</p>
+              </div>
+            </div>
+
+            {/* 1st Level Child Nodes */}
+            <div className="absolute top-[240px] left-[20%] transform -translate-x-1/2">
+              <Node
+                title="World Brandverse"
+                status="incorporated"
+                icon="./images/india.png"
+                subtitle="World Brandverse"
+              />
+            </div>
+
+            <div className="absolute top-[240px] left-[40%] transform -translate-x-1/2">
+              <Node
+                title="WOGOM"
+                status="incorporated"
+                subtitle="World Goods Marketplace (B2B)"
+                icon="./images/india.png"
+              />
+            </div>
+
+            <div className="absolute top-[240px] left-[60%] transform -translate-x-1/2">
+              <Node
+                title="WOFI"
+                status="incorporated"
+                subtitle="World Finverse"
+                icon="./images/india.png"
+              />
+            </div>
+
+            <div className="absolute top-[240px] left-[80%] transform -translate-x-1/2">
+              <Node
+                title="WOFI Global"
+                subtitle="(Gift City)"
+                status="in-progress"
+                icon="./images/world.png"
+              />
+            </div>
+
+            {/* 2nd Level Sub-Nodes */}
+            <div className="absolute top-[440px] left-[20%] transform -translate-x-1/2">
+              <Node
+                title="World Brandverse"
+                subtitle="(Hong Kong)"
+                status="planned"
+                icon="./images/world.png"
+                small
+              />
+            </div>
+
+            <div className="absolute top-[440px] left-[40%] transform -translate-x-1/2">
+              <Node
+                title="WOGOM"
+                subtitle="(Singapore)"
+                status="planned"
+                icon="./images/world.png"
+                small
+              />
+            </div>
+          </div>
+
+          {/* Legend */}
+          <div className="w-full flex justify-end mx-auto max-w-main pr-40 2xl:pr-60">
+            <div className="flex flex-col items-start gap-4">
+              <Legend color="#1068B2" label="Incorporated" />
+              <Legend color="#1068B2" dashed label="In Progress" />
+              <Legend color="#1068B2" label="Planned for 2026" />
+            </div>
+          </div>
+          {/* <div className="max-w-4xl mx-auto">
             <div className="bg-white rounded-2xl shadow-lg p-8">
-              {/* Parent Company */}
               <div className="text-center mb-12">
                 <div className="inline-block bg-wdv-navy text-white px-8 py-4 rounded-xl">
                   <h3 className="text-2xl font-bold">World Digital Ventures</h3>
                   <p className="text-blue-200">Holding Company</p>
                 </div>
               </div>
-
-              {/* Subsidiaries */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="text-center">
                   <div className="bg-wdv-blue text-white p-6 rounded-xl mb-4">
@@ -291,7 +649,7 @@ const Investors = () => {
 
                 <div className="text-center">
                   <div className="bg-wdv-gold text-wdv-navy p-6 rounded-xl mb-4">
-                    <h4 className="text-xl font-bold mb-2">WoFi</h4>
+                    <h4 className="text-xl font-bold mb-2">Wofi</h4>
                     <p className="text-gray-700 text-sm">Financial Services</p>
                   </div>
                   <ul className="text-sm text-gray-600 space-y-1">
@@ -313,8 +671,6 @@ const Investors = () => {
                   </ul>
                 </div>
               </div>
-
-              {/* Synergies */}
               <div className="mt-12 bg-gray-50 rounded-xl p-6">
                 <h4 className="text-lg font-bold text-wdv-navy mb-4 text-center">Strategic Synergies</h4>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-gray-700">
@@ -324,65 +680,65 @@ const Investors = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
 
       {/* Ideal Partner */}
-      <section className="section-padding bg-wdv-navy text-white">
+      <section className="section-padding bg-white">
         <div className="container-wdv">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-6">
+            <h2 className="text-3xl lg:text-4xl font-bold mb-6 text-[#012345]">
               We Seek Strategic Investors Who
             </h2>
-            <p className="text-xl text-blue-100">
+            <p className="text-xl text-[#012345]">
               Partner profile for maximum value creation and ecosystem growth
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <div className="space-y-6">
-              <div className="flex items-start space-x-4">
-                <CheckCircle className="h-6 w-6 text-wdv-gold mt-1 flex-shrink-0" />
+              <div className="flex items-start space-x-4 p-5 bg-[#1068b2] rounded-lg">
+                <CheckCircle className="h-6 w-6 text-white mt-1 flex-shrink-0" />
                 <div>
-                  <h3 className="text-lg font-semibold mb-2 text-wdv-gold">Understand the Indian Market</h3>
+                  <h3 className="text-lg font-semibold mb-2 text-white">Understand the Indian Market</h3>
                   <p className="text-blue-100">Deep appreciation for India's retail ecosystem complexity and growth potential</p>
                 </div>
               </div>
-              <div className="flex items-start space-x-4">
-                <CheckCircle className="h-6 w-6 text-wdv-gold mt-1 flex-shrink-0" />
+              <div className="flex items-start space-x-4 p-5 bg-[#1068b2] rounded-lg">
+                <CheckCircle className="h-6 w-6 text-white mt-1 flex-shrink-0" />
                 <div>
-                  <h3 className="text-lg font-semibold mb-2 text-wdv-gold">Bring Strategic Value</h3>
+                  <h3 className="text-lg font-semibold mb-2 text-white">Bring Strategic Value</h3>
                   <p className="text-blue-100">Beyond capital - offer networks, expertise, and market access</p>
                 </div>
               </div>
-              <div className="flex items-start space-x-4">
-                <CheckCircle className="h-6 w-6 text-wdv-gold mt-1 flex-shrink-0" />
+              <div className="flex items-start space-x-4 p-5 bg-[#1068b2] rounded-lg">
+                <CheckCircle className="h-6 w-6 text-white mt-1 flex-shrink-0" />
                 <div>
-                  <h3 className="text-lg font-semibold mb-2 text-wdv-gold">Have Patient Capital</h3>
+                  <h3 className="text-lg font-semibold mb-2 text-white">Have Patient Capital</h3>
                   <p className="text-blue-100">Long-term investment horizon aligned with ecosystem building approach</p>
                 </div>
               </div>
             </div>
             <div className="space-y-6">
-              <div className="flex items-start space-x-4">
-                <CheckCircle className="h-6 w-6 text-wdv-gold mt-1 flex-shrink-0" />
+              <div className="flex items-start space-x-4 p-5 bg-[#1068b2] rounded-lg">
+                <CheckCircle className="h-6 w-6 text-white mt-1 flex-shrink-0" />
                 <div>
-                  <h3 className="text-lg font-semibold mb-2 text-wdv-gold">Support Scale Ambitions</h3>
+                  <h3 className="text-lg font-semibold mb-2 text-white">Support Scale Ambitions</h3>
                   <p className="text-blue-100">Committed to helping us become India's leading retail ecosystem platform</p>
                 </div>
               </div>
-              <div className="flex items-start space-x-4">
-                <CheckCircle className="h-6 w-6 text-wdv-gold mt-1 flex-shrink-0" />
+              <div className="flex items-start space-x-4 p-5 bg-[#1068b2] rounded-lg">
+                <CheckCircle className="h-6 w-6 text-white mt-1 flex-shrink-0" />
                 <div>
-                  <h3 className="text-lg font-semibold mb-2 text-wdv-gold">Share Our Values</h3>
+                  <h3 className="text-lg font-semibold mb-2 text-white">Share Our Values</h3>
                   <p className="text-blue-100">Collaborative approach to building sustainable, impactful businesses</p>
                 </div>
               </div>
-              <div className="flex items-start space-x-4">
-                <CheckCircle className="h-6 w-6 text-wdv-gold mt-1 flex-shrink-0" />
+              <div className="flex items-start space-x-4 p-5 bg-[#1068b2] rounded-lg">
+                <CheckCircle className="h-6 w-6 text-white mt-1 flex-shrink-0" />
                 <div>
-                  <h3 className="text-lg font-semibold mb-2 text-wdv-gold">Understand Tech + Fintech</h3>
+                  <h3 className="text-lg font-semibold mb-2 text-white">Understand Tech + Fintech</h3>
                   <p className="text-blue-100">Experience with marketplace and financial services business models</p>
                 </div>
               </div>
@@ -392,21 +748,23 @@ const Investors = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="section-padding bg-gray-50">
+      <section className="section-padding bg-gray-100">
         <div className="container-wdv">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl lg:text-4xl font-bold text-wdv-navy mb-6">
+            <h2 className="text-3xl lg:text-4xl font-bold text-[#012345] mb-6">
               Ready to Partner with Us?
             </h2>
-            <p className="text-xl text-gray-600 mb-8">
+            <p className="text-xl text-[#012345] mb-8">
               Join us in building India's most collaborative retail ecosystem. Let's create extraordinary value together.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-wdv-gold text-wdv-navy hover:bg-yellow-400 font-semibold">
+              <Button size="lg" className="bg-[#1068b2] text-white hover:bg-[#1068b2] hover:text-white textfont-semibold"
+                onClick={handleDownload}>
                 <Download className="mr-2 h-5 w-5" />
-                Download Investment Deck
+                Download Pitch Deck
               </Button>
-              <Button size="lg" variant="outline" className="border-wdv-navy text-wdv-navy hover:bg-wdv-navy hover:text-white">
+              <Button size="lg" variant="outline" className="bg-[#1068b2] text-white hover:bg-[#1068b2] hover:text-white"
+                onClick={openModal}>
                 Schedule Investor Meeting
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
@@ -417,5 +775,101 @@ const Investors = () => {
     </div>
   );
 };
+function Node({ title, subtitle, icon, status = "default", small = false }) {
+  const baseClass =
+    "relative w-52 h-36 rounded-xl p-4 text-center shadow bg-white text-primary overflow-hidden";
+  const defaultBorder = "border border-[#1068b2]";
+  const borderClass =
+    status === "incorporated"
+      ? "border-2 border-[#1068b2]"
+      : status === "planned"
+        ? "border border-[#1068b2]"
+        : status === "in-progress"
+          ? ""
+          : defaultBorder;
 
+  return (
+    <div className={`${baseClass} ${borderClass}`}>
+      {status === "in-progress" && (
+        <>
+          <svg
+            className="absolute inset-0 w-full h-full z-0 pointer-events-none"
+            viewBox="0 0 208 144"
+            fill="none"
+          >
+            <path
+              d="M0 12 Q0 0 12 0 H11 Q3 0 1 12 V132 Q3 144 12 144 H0 Q0 144 0 132 Z"
+              fill="currentColor"
+              className="text-[#1068b2]"
+            />
+            <path
+              d="M208 12 Q208 0 196 0 H197 Q205 0 205 12 V132 Q205 144 196 144 H208 Q208 144 208 132 Z"
+              fill="currentColor"
+              className="text-[#1068b2]"
+            />
+            <path
+              d="M12 1 H104 V0 H12 Q0 0 0 12 Q0 1 12 1 Z"
+              fill="currentColor"
+              className="text-[#1068b2]"
+            />
+            <path
+              d="M104 3 H196 Q208 3 208 12 Q208 0 196 0 H104 V3 Z"
+              fill="currentColor"
+              className="text-[#1068b2]"
+            />
+            <path
+              d="M12 143 H104 V144 H12 Q0 144 0 132 Q0 143 12 143 Z"
+              fill="currentColor"
+              className="text-[#1068b2]"
+            />
+            <path
+              d="M104 141 H196 Q208 141 208 132 Q208 144 196 144 H104 V141 Z"
+              fill="currentColor"
+              className="text-[#1068b2]"
+            />
+          </svg>
+        </>
+      )}
+      <img
+        src={icon}
+        alt="icon"
+        className="mx-auto mb-2 w-8 h-8 z-10 relative"
+        draggable="false"
+      />
+      <h3 className="font-bold text-base text-[#012345] z-10 relative">{title}</h3>
+      {subtitle && <p className="text-xs text-[#012345] mt-1 z-10 relative">{subtitle}</p>}
+    </div>
+  );
+}
+
+function Legend({ color, label, dashed = false }) {
+  return (
+    <div className="flex items-center gap-2">
+      {label === "In Progress" ? (
+        // Split bar: left 1px, right 3px
+        <div className="flex w-10">
+          <div
+            className="w-1/2 border-b"
+            style={{ borderColor: color, borderWidth: "1px" }}
+          ></div>
+          <div
+            className="w-1/2 border-b"
+            style={{ borderColor: color, borderWidth: "3px" }}
+          ></div>
+        </div>
+      ) : (
+        // Other types: dashed or solid
+        <div
+          className={`w-10 ${dashed ? "border-b-dashed" : "border-b-solid"} ${label === "Planned for 2026" ? "border-[1px]" : "border-b-[3px]"
+            }`}
+          style={{
+            borderColor: color,
+            backgroundColor: dashed ? "transparent" : color,
+          }}
+        ></div>
+      )}
+      <span className="text-sm text-primary">{label}</span>
+    </div>
+  );
+}
 export default Investors;

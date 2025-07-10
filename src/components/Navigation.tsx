@@ -11,7 +11,7 @@ const Navigation = () => {
   const navItems = [
     { name: "Home", path: "/" },
     { name: "WOGOM", path: "/wogom" },
-    { name: "WoFi", path: "/wofi" },
+    { name: "Wofi", path: "/wofi" },
     { name: "Brandverse", path: "/brandverse" },
     { name: "Leadership", path: "/leadership" },
     { name: "Investors", path: "/investors" },
@@ -19,15 +19,15 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className="bg-white shadow-sm border-b sticky top-0 z-50">
+    <nav className="bg-white shadow-sm  sticky top-0 z-50">
       <div className="container-wdv">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-wdv-navy rounded-lg flex items-center justify-center">
+            {/* <div className="w-8 h-8 bg-wdv-navy rounded-lg p-5 flex items-center justify-center">
               <span className="text-white font-bold text-sm">WDV</span>
-            </div>
-            <span className="text-xl font-bold text-wdv-navy">World Digital Ventures</span>
+            </div> */}
+            <span className=""><img src="./images/worlddigitalventure.svg" className="h-5" alt="" /></span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -45,9 +45,9 @@ const Navigation = () => {
                 {item.name}
               </Link>
             ))}
-            <Button className="bg-wdv-blue hover:bg-wdv-navy">
+            {/* <Button className="bg-[#1068b2] hover:bg-[#1068b2] text-white">
               Join Ecosystem
-            </Button>
+            </Button> */}
           </div>
 
           {/* Mobile menu button */}
