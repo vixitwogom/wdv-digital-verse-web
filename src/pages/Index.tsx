@@ -188,7 +188,7 @@ const handleFeatureClick = () => {
         <meta name="description" content="WDV is building India’s largest and most profitable digital ecosystem of MSMEs in the consumer electronics space." />
       </Helmet>
 
-      <section className="relative bg-[#012345] text-white py-[120px] md:py-[170px] 2xl:py-[300px] overflow-hidden"
+      <section className="relative bg-[#012345] text-white py-[120px] md:py-[170px] 2xl:py-[400px] overflow-hidden"
         style={{
           background: 'linear-gradient(135deg, #001f3d, #2d68d8)',
         }}
