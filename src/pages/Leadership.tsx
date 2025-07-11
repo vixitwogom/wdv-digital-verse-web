@@ -60,7 +60,7 @@ const LeadershipCard = ({ member, index }) => {
       <div className="p-6">
         <h3 className="text-xl font-bold text-slate-900">{member.name}</h3>
         <p className="text-[#1068b2] font-semibold mb-2">{member.role}</p>
-        <ul className="mt-5 text-sm text-slate-600 list-disc list-inside text-left space-y-5">
+        <ul className="mt-5 text-sm text-[#012345] list-disc list-inside text-left space-y-5">
           {member.bio.map((point, idx) => (
             <li key={idx}>{point}</li>
           ))}

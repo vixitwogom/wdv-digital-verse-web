@@ -23,9 +23,9 @@ const Index = () => {
 
   const navigate = useNavigate();
 
-const handleFeatureClick = () => {
-  navigate("/contact"); // 👈 Navigate to /contact route
-};
+  const handleFeatureClick = () => {
+    navigate("/contact"); // 👈 Navigate to /contact route
+  };
 
   const milestonesData = [
     {
@@ -200,7 +200,7 @@ const handleFeatureClick = () => {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 container flex flex-col md:flex-row items-center justify-between gap-10">
 
-          <div className="w-full md:w-1/2 text-left md:text-left">
+          <div className="w-full md:w-1/2 text-left md:text-left flex flex-col gap-5">
             <motion.h1
               className="text-xl md:text-3xl 2xl:text-4xl font-bold mb-6"
               initial={{ opacity: 0, y: 20 }}
@@ -259,7 +259,6 @@ const handleFeatureClick = () => {
                 </a>
               </div>
             </motion.h2>
-
             <motion.div
               className="flex flex-col sm:flex-row gap-4"
               initial={{ opacity: 0, y: 20 }}
@@ -371,7 +370,7 @@ const handleFeatureClick = () => {
                 <h3 className="text-xl font-bold text-[#012345]">WOGOM</h3>
                 <p className="text-[#012345] mb-4">B2B Marketplace</p>
                 <ul className="text-sm space-y-1 text-[#012345] w-full">
-                  <li className="flex justify-between">``
+                  <li className="flex justify-between">
                     <span>Sellers:</span>
                     <strong>450+</strong>
                   </li>
@@ -407,7 +406,7 @@ const handleFeatureClick = () => {
                 <ul className="text-sm space-y-1 text-[#012345] w-full">
                   <li className="flex justify-between">Disbursed: <strong>₹271 Cr</strong></li>
                   <li className="flex justify-between">Retailers: <strong>1,259</strong></li>
-                  <li className="flex justify-between">NPA: <strong className="text-green-600">&lt; 0.50%</strong></li>
+                  <li className="flex justify-between">NPA: <strong className="text-green-600">&lt; 0.5%</strong></li>
                 </ul>
               </div>
               <span className="text-[#012345] font-semibold flex items-center mt-4">

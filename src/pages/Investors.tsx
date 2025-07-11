@@ -9,8 +9,13 @@ import GMVBarChart from "@/components/ui/GMVBarChart";
 import CustomModal from "@/components/ui/CustomModal";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import DynamicForm from "@/components/ui/DynamicForm";
+import { FieldConfig } from "@/types/types";
+import { useToast } from "@/components/ui/use-toast";
 
 const Investors = () => {
+  const { toast } = useToast();
+
   const FIRST_LEVEL_CHILD_BOTTOM_Y = 300;
   const INTERMEDIATE_Y_LEVEL_2 = 340;
   const childTargetX = {
@@ -24,15 +29,48 @@ const Investors = () => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = (data: any) => {
+    toast({
+      title: "Meeting Request Submitted!",
+      description:
+        "Thank you for scheduling a meeting. We’ve received your request and will confirm the details with you shortly. We look forward to connecting with you!",
+    });
     closeModal();
   };
 
+  const formFieldsForScheduleMeeting: FieldConfig[] = [
+    { name: "firstName", label: "First Name", type: "text", placeholder: "Enter your first name", required: true },
+    { name: "lastName", label: "Last Name", type: "text", placeholder: "Enter your last name", required: true },
+    { name: "email", label: "Email Address", type: "email", placeholder: "Enter your email", required: true },
+    { name: "phone", label: "Phone Number", type: "tel", placeholder: "+91 98765 43210" },
+    { name: "company", label: "Company Name", type: "text", placeholder: "Enter company name" },
+    {
+      name: "interest",
+      label: "Area of Interest",
+      type: "select",
+      required: true,
+      options: [
+        { label: "Join as Retailer", value: "retailer" },
+        { label: "Become a Seller", value: "seller" },
+        { label: "Brand Partnership", value: "brand" },
+        { label: "Investment Opportunity", value: "investor" },
+        { label: "Credit Solutions", value: "Credit Solutions" },
+        { label: "Other", value: "other" },
+      ],
+    },
+    {
+      name: "message",
+      label: "Message",
+      type: "textarea",
+      placeholder: "Tell us about your requirements...",
+      required: true,
+    },
+  ];
+
   const handleDownload = () => {
     const link = document.createElement("a");
-    link.href = "/assets/WDV_Pitch Deck_02-07.pdf"; 
-    link.download = "WDV_Pitch Deck_02-07.pdf";     
+    link.href = "/assets/WDV_Pitch Deck_02-07.pdf";
+    link.download = "WDV_Pitch Deck_02-07.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -40,6 +78,11 @@ const Investors = () => {
 
   return (
     <div className="min-h-screen">
+
+      <CustomModal isOpen={isModalOpen} onClose={closeModal} title="Schedule Meeting">
+        <DynamicForm fields={formFieldsForScheduleMeeting} onSubmit={handleSubmit} />
+      </CustomModal>
+
       {/* Hero Section */}
       <section className="bg-[#012345] hite section-padding">
         <div className="px-4 py-16 md:py-20 2xl:py-[160px]">
@@ -56,116 +99,18 @@ const Investors = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up" style={{ animationDelay: '0.3s' }}>
               <Button size="lg" className="bg-white text-[#012345] hover:bg-white font-semibold"
-              onClick={handleDownload}>
+                onClick={handleDownload}>
                 <Download className="mr-2 h-5 w-5" />
                 Download Pitch Deck
               </Button>
               <Button size="lg" variant="outline" className="border-whit hover:bg-white bg-white text-[#012345] border-none hover:text-wdv-navy" onClick={openModal}>
                 Schedule Meeting
               </Button>
-              <CustomModal isOpen={isModalOpen} onClose={closeModal} title="Schedule Meeting">
-                <form className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="firstName" className="block text-sm font-semibold text-left text-[#012345] mb-2">
-                        First Name *
-                      </label>
-                      <Input
-                        id="firstName"
-                        type="text"
-                        placeholder="Enter your first name"
-                        className="w-full border-black"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="lastName" className="block text-left text-sm font-semibold text-[#012345] mb-2">
-                        Last Name *
-                      </label>
-                      <Input
-                        id="lastName"
-                        type="text"
-                        placeholder="Enter your last name"
-                        className="w-full border-black"
-                      />
-                    </div>
-                  </div>
 
-                  <div>
-                    <label htmlFor="email" className="block text-left text-sm font-semibold text-[#012345] mb-2">
-                      Email Address *
-                    </label>
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder="Enter your email address"
-                      className="w-full border-black"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="phone" className="block text-left text-sm font-semibold text-[#012345] mb-2">
-                      Phone Number
-                    </label>
-                    <Input
-                      id="phone"
-                      type="tel"
-                      placeholder="+91 98765 43210"
-                      className="w-full border-black"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="company" className="block text-left text-sm font-semibold text-[#012345] mb-2">
-                      Company Name
-                    </label>
-                    <Input
-                      id="company"
-                      type="text"
-                      placeholder="Enter company name"
-                      className="w-full border-black"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="interest" className="block text-left text-sm font-semibold text-[#012345] mb-2">
-                      Area of Interest *
-                    </label>
-                    <select
-                      id="interest"
-                      className="w-full px-3 py-2 border border-black text-[#012345] rounded-lg focus:outline-none focus:ring-2 focus:ring-wdv-blue focus:border-transparent"
-                    >
-                      <option value="">Select your interest</option>
-                      <option value="retailer">Join as Retailer</option>
-                      <option value="seller">Become a Seller</option>
-                      <option value="brand">Brand Partnership</option>
-                      <option value="investor">Investment Opportunity</option>
-                      <option value="credit">Credit Solutions</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label htmlFor="message" className="block text-left text-sm font-semibold text-[#012345] mb-2">
-                      Message *
-                    </label>
-                    <Textarea
-                      id="message"
-                      placeholder="Tell us about your requirements, questions, or how we can help you..."
-                      className="w-full h-32 border-black"
-                    />
-                  </div>
-
-                  <Button type="submit" size="lg" className="w-full bg-[#1068b2] text-white hover:bg-[#1068b2] font-semibold">
-                    <Send className="mr-2 h-5 w-5" />
-                    Send Message
-                  </Button>
-                </form>
-              </CustomModal>
             </div>
           </div>
         </div>
       </section>
-
       {/* Investment Highlights */}
       <section className="section-padding">
         <div className="container-wdv">
@@ -204,7 +149,7 @@ const Investors = () => {
               </CardHeader>
               <CardContent>
                 <div className="space-y-2 text-sm text-white">
-                  <div className="flex"><CheckCircle className="h-4 w-4 text-white mr-2 mt-0.5" />&lt; 0.50% NPA Rate</div>
+                  <div className="flex"><CheckCircle className="h-4 w-4 text-white mr-2 mt-0.5" />&lt; 0.5% NPA Rate</div>
                   <div className="flex"><CheckCircle className="h-4 w-4 text-white mr-2 mt-0.5" />Path to Profitability</div>
                   <div className="flex"><CheckCircle className="h-4 w-4 text-white mr-2 mt-0.5" />Scalable Model</div>
                 </div>
@@ -236,9 +181,9 @@ const Investors = () => {
               </CardHeader>
               <CardContent>
                 <div className="space-y-2 text-sm text-white">
-                 <div className="flex"><CheckCircle className="h-4 w-4 text-white mr-2 mt-0.5" />$1.3T Retail Market</div>
-                 <div className="flex"><CheckCircle className="h-4 w-4 text-white mr-2 mt-0.5" />Growing Digitization</div>
-                 <div className="flex"><CheckCircle className="h-4 w-4 text-white mr-2 mt-0.5" />Underserved MSMEs</div>
+                  <div className="flex"><CheckCircle className="h-4 w-4 text-white mr-2 mt-0.5" />$1.3T Retail Market</div>
+                  <div className="flex"><CheckCircle className="h-4 w-4 text-white mr-2 mt-0.5" />Growing Digitization</div>
+                  <div className="flex"><CheckCircle className="h-4 w-4 text-white mr-2 mt-0.5" />Underserved MSMEs</div>
                 </div>
               </CardContent>
             </Card>

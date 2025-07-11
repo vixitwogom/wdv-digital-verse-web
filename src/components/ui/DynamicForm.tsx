@@ -18,12 +18,17 @@ const DynamicForm: React.FC<Props> = ({ fields, onSubmit }) => {
     const {
         handleSubmit,
         register,
+        reset,
         formState: { errors },
     } = methods;
 
+    const onFormSubmit = (data: any) => {
+        onSubmit(data);    
+        reset();           
+    };
     return (
         <FormProvider {...methods}>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+            <form onSubmit={handleSubmit(onFormSubmit)} className="space-y-6">
                 {fields.map((field) => (
                     <div key={field.name}>
                         <label

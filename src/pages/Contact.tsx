@@ -20,27 +20,27 @@ const Contact = () => {
   const closeModal = () => setIsModalOpen(false);
   const closeModalBrandverse = () => setisModalOpenBrandverse(false);
   const { toast } = useToast();
-  const handleSubmitInvestment = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmitInvestment = (data: any) => {
     toast({
-      title: "Thank You",
-      // description: "This feature isn't implemented yet—but don't worry! You can request it in your next prompt! 🚀",
+      title: "Inquiry Submitted Successfully!",
+      description:
+        "Thank you for your interest in investing with World Digital Venture. Our team has received your inquiry and will connect with you soon to explore the opportunity further.",
     });
     closeModal();
   };
-  const handleSubmitBrandverse = (e: React.FormEvent) => {
-    e.preventDefault();
+
+  const handleSubmitBrandverse = (data: any) => {
     toast({
-      title: "Thank You",
-      // description: "This feature isn't implemented yet—but don't worry! You can request it in your next prompt! 🚀",
+      title: "Thank You for Reaching Out to Brandverse!",
+      description: "Your partnership request has been received. The Brandverse team will review your proposal and get in touch soon to explore how we can create impactful collaborations together.",
     });
-    closeModal();
+    closeModalBrandverse();
   };
   const handleSubmit = (e: React.FormEvent) => {
     // e.preventDefault();
     toast({
-      title: "Thank You",
-      // description: "This feature isn't implemented yet—but don't worry! You can request it in your next prompt! 🚀",
+      title: "Message Sent Successfully!",
+      description: "Thank you for contacting World Digital Venture. We’ve received your message and will get back to you shortly.",
     });
     // closeModal();
   };
@@ -189,7 +189,7 @@ const Contact = () => {
           <CustomModal isOpen={isModalOpen} onClose={closeModal} title="Investment Inquiry">
             <DynamicForm fields={formFieldsForInvestment} onSubmit={handleSubmitInvestment} />
           </CustomModal>
-          <CustomModal isOpen={isModalOpenBrandverse} onClose={closeModalBrandverse} title="Brandverse">
+          <CustomModal isOpen={isModalOpenBrandverse} onClose={closeModalBrandverse} title="Brand Partnership">
             <DynamicForm fields={formFieldsForBrandverse} onSubmit={handleSubmitBrandverse} />
           </CustomModal>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">

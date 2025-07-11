@@ -62,7 +62,7 @@ const WoFi = () => {
                   {[
                     { value: '₹271 Cr', label: 'Total Disbursed' },
                     { value: '1,259', label: 'Active Retailers' },
-                    { value: '< 0.50%', label: 'NPA Rate' },
+                    { value: '< 0.5%', label: 'NPA Rate' },
                     { value: '67 days', label: 'Avg Repayment' },
                   ].map((item, index) => (
                     <div key={index}>
@@ -177,9 +177,9 @@ const WoFi = () => {
                   Instead of extending credit retailer-by-retailer, WOFI assigns a single credit limit and disburses funds against submitted sales invoices.
                 </p>
                 <ul className="space-y-2 text-sm text-gray-700">
-                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Collateral Free </li>
-                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Quick Disbursal</li>
-                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Easy and Flexible Repayment Facility</li>
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-[#012345] mr-2" />Collateral Free </li>
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-[#012345] mr-2" />Quick Disbursal</li>
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-[#012345] mr-2" />Easy and Flexible Repayment Facility</li>
                 </ul>
               </CardContent>
             </Card>
@@ -203,9 +203,9 @@ const WoFi = () => {
                   We settle the invoice directly with the distributor, giving retailers up to 60 days to repay.
                 </p>
                 <ul className="space-y-2 text-sm text-gray-700">
-                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />No upfront collateral</li>
-                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Daily interest calculation</li>
-                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Fast Delivery</li>
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-[#012345] mr-2" />No upfront collateral</li>
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-[#012345] mr-2" />Daily interest calculation</li>
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-[#012345] mr-2" />Fast Delivery</li>
                 </ul>
               </CardContent>
             </Card>
@@ -228,9 +228,9 @@ const WoFi = () => {
                   WOFI Term Loans provide upfront capital with easy EMIs, designed to support high-value business needs like bulk inventory purchases/seasonal purchases. We help you seize big opportunities even when liquidity is tight.
                 </p>
                 <ul className="space-y-2 text-sm text-gray-700">
-                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />High Loan Amount</li>
-                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Quick Disbursal</li>
-                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Easy EMI Structure</li>
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-[#012345] mr-2" />High Loan Amount</li>
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-[#012345] mr-2" />Quick Disbursal</li>
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-[#012345] mr-2" />Easy EMI Structure</li>
                 </ul>
               </CardContent>
             </Card>
@@ -253,9 +253,9 @@ const WoFi = () => {
                   WOFI’s Supply Chain Finance empowers retailers with faster, collateral-free credit while involving distributors in the lending process. Retailers can secure large loans (e.g., ₹50 lakhs) to fund day-to-day capital requirements.
                 </p>
                 <ul className="space-y-2 text-sm text-gray-700">
-                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Faster access to credit </li>
-                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Higher loan amount</li>
-                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Strengthens ties with retail partners</li>
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-[#012345] mr-2" />Faster access to credit </li>
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-[#012345] mr-2" />Higher loan amount</li>
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-[#012345] mr-2" />Strengthens ties with retail partners</li>
                 </ul>
               </CardContent>
             </Card>

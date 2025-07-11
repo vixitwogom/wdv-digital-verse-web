@@ -17,11 +17,11 @@ const Brandverse = () => {
   const closeModal = () => setIsModalOpen(false);
   const { toast } = useToast();
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = (data: any) => {
     // e.preventDefault();
     toast({
-      title: "Thank You",
-      // description: "This feature isn't implemented yet—but don't worry! You can request it in your next prompt! 🚀",
+      title: "Thank You for Reaching Out to Brandverse!",
+      description: "Your partnership request has been received. The Brandverse team will review your proposal and get in touch soon to explore how we can create impactful collaborations together.",
     });
     closeModal();
   };
@@ -79,7 +79,7 @@ const Brandverse = () => {
                   Partner with Us
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
-                <CustomModal isOpen={isModalOpen} onClose={closeModal} title="Schedule Meeting">
+                <CustomModal isOpen={isModalOpen} onClose={closeModal} title="Brand Partnership">
                   <DynamicForm fields={formFields} onSubmit={handleFormSubmit} />
                 </CustomModal>
               </div>

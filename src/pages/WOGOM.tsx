@@ -98,23 +98,23 @@ const WOGOM = () => {
                   <h3 className="text-2xl font-bold text-[#012345] mb-4">The Problem</h3>
                   <ul className="space-y-3 text-gray-700">
                     <li className="flex items-start">
-                      <span className="text-[#012345] mr-2">•</span>
+                      <CheckCircle className="text-[#012345] mr-2 h-5 w-5 mt-0.5" />
                       Fragmented supply chain with multiple intermediaries
                     </li>
                     <li className="flex items-start">
-                      <span className="text-[#012345] mr-2">•</span>
+                      <CheckCircle className="text-[#012345] mr-2 h-5 w-5 mt-0.5" />
                       Poor margins due to middlemen markup
                     </li>
                     <li className="flex items-start">
-                      <span className="text-[#012345] mr-2">•</span>
+                      <CheckCircle className="text-[#012345] mr-2 h-5 w-5 mt-0.5" />
                       Limited product discovery and selection
                     </li>
                     <li className="flex items-start">
-                      <span className="text-[#012345] mr-2">•</span>
+                      <CheckCircle className="text-[#012345] mr-2 h-5 w-5 mt-0.5" />
                       Inefficient order management and tracking
                     </li>
                     <li className="flex items-start">
-                      <span className="text-[#012345] mr-2">•</span>
+                      <CheckCircle className="text-[#012345] mr-2 h-5 w-5 mt-0.5" />
                       Cash flow challenges for retailers
                     </li>
                   </ul>
