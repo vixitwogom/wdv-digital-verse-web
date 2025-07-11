@@ -466,7 +466,7 @@ const Index = () => {
                       </h2>
 
                       {/* Dot */}
-                      <span className="px-1 bg-[#F0F0F0] relative">
+                      <span className="px-1 bg-white relative">
                         <p className="w-3 h-3 bg-primary rounded-full relative z-10"></p>
                       </span>
 
