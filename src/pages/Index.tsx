@@ -193,7 +193,7 @@ const handleFeatureClick = () => {
           background: 'linear-gradient(135deg, #001f3d, #2d68d8)',
         }}
       >
-        <div className="absolute inset-0 bg-[url('./images/hero_new.png')] bg-cover bg-center"></div>
+        <div className="absolute inset-0 bg-[url('/images/hero_new.png')] bg-cover bg-center"></div>
 
         {/* <div className="absolute inset-0 bg-[url('./images/hero.png')] bg-cover bg-center md:hidden"></div> */}
 
