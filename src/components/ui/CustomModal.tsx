@@ -52,7 +52,7 @@ const CustomModal: React.FC<CustomModalProps> = ({ isOpen, onClose, title, child
             variants={modalVariants}
             initial="hidden"
             animate="visible"
-            exit="exit"
+            exit="exit" 
             onClick={(e) => e.stopPropagation()} // Prevent closing on inner click
           >
             <h2 className="text-xl md:text-2xl font-bold mb-6 text-[#012345]">{title}</h2>

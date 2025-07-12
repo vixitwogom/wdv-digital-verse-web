@@ -16,7 +16,7 @@ const Footer = () => {
               <span className=""><img src="./images/wdv_white.svg" className="h-5 " alt="" /></span>
             </div>
             <p className="text-gray-300 mb-4 max-w-md">
-              Empowering India's retail ecosystem through Money, Margin and Discovery. 
+              Empowering India's retail ecosystem through Money, Margin and Discovery.
               Building the future of B2B commerce and fintech solutions.
             </p>
             <div className="space-y-2">
@@ -26,12 +26,18 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-2 text-sm text-gray-300">
                 <Mail className="h-4 w-4" />
-                <span>support@wogom.com</span>
+                <a href="mailto:support@wogom.com" className="hover:underline">
+                  support@wogom.com
+                </a>
               </div>
+
               <div className="flex items-center space-x-2 text-sm text-gray-300">
                 <Phone className="h-4 w-4" />
-                <span>+91-97960 02002</span>
+                <a href="tel:+919796002002" className="hover:underline">
+                  +91-97960 02002
+                </a>
               </div>
+
             </div>
           </div>
 

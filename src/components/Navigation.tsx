@@ -27,7 +27,7 @@ const Navigation = () => {
             {/* <div className="w-8 h-8 bg-wdv-navy rounded-lg p-5 flex items-center justify-center">
               <span className="text-white font-bold text-sm">WDV</span>
             </div> */}
-            <span className=""><img src="./images/worlddigitalventure.svg" className="h-5" alt="" /></span>
+            <span className=""><img src="./images/worlddigitalventure.svg" className="h-4 md:h-5" alt="" /></span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -53,7 +53,7 @@ const Navigation = () => {
           {/* Mobile menu button */}
           <div className="lg:hidden">
             <Button
-              variant="ghost"
+              variant="wdvblue"
               size="sm"
               onClick={() => setIsOpen(!isOpen)}
             >
@@ -64,15 +64,15 @@ const Navigation = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="lg:hidden py-4 border-t animate-fade-in">
+          <div className="lg:hidden py-4 border-t border-[#012345] animate-fade-in">
             <div className="flex flex-col space-y-2">
               {navItems.map((item) => (
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`px-3 py-2 text-sm font-medium transition-colors hover:text-wdv-blue ${
+                  className={`px-3 py-2 text-sm font-medium transition-colors hover:text-[#1068b2] ${
                     location.pathname === item.path 
-                      ? "text-wdv-blue bg-blue-50" 
+                      ? "text-[#1068b2] bg-blue-50" 
                       : "text-gray-700"
                   }`}
                   onClick={() => setIsOpen(false)}
@@ -80,11 +80,11 @@ const Navigation = () => {
                   {item.name}
                 </Link>
               ))}
-              <div className="px-3 pt-2">
-                <Button className="w-full bg-wdv-blue hover:bg-wdv-navy">
+              {/* <div className="px-3 pt-2">
+                <Button className="w-full bg-wdv-blue hover:bg-wdv-navy text-white">
                   Join Ecosystem
                 </Button>
-              </div>
+              </div> */}
             </div>
           </div>
         )}

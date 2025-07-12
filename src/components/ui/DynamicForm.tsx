@@ -87,7 +87,7 @@ const DynamicForm: React.FC<Props> = ({ fields, onSubmit }) => {
                     className="w-full bg-[#1068b2] text-white hover:bg-[#1068b2] font-semibold"
                 >
                     <Send className="mr-2 h-5 w-5" />
-                    Send Message
+                    Send 
                 </Button>
             </form>
         </FormProvider>
